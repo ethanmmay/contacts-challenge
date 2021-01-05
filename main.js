@@ -13,7 +13,6 @@ let contact = {}
 function addContact(event) {
   event.preventDefault()
   let form = event.target
-  console.log(form)
 
   let name = form.name.value
   let phone = form.phone.value
@@ -21,18 +20,14 @@ function addContact(event) {
 
   contact = contacts.find(contact => contact.name == name)
 
-  if (emergencyContact.checked) {
-    console.log("checked")
-  }
-  
   if (!contact) {
-        contact = { name: name, phone: phone, emergencyContact: emergencyContact.checked }
+        contact = { id: generateId(), name: name, phone: phone, emergencyContact: emergencyContact.checked }
         contacts.push(contact)
     }
 
   console.log(contacts)
+  saveContacts()
   form.reset()
-  
 }
 
 /**
