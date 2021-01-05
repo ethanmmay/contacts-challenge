@@ -21,11 +21,15 @@ function addContact(event) {
   contact = contacts.find(contact => contact.name == name)
 
   if (!contact) {
-        contact = { id: generateId(), name: name, phone: phone, emergencyContact: emergencyContact.checked }
-        contacts.push(contact)
+    contact = {
+      id: generateId(),
+      name: name,
+      phone: phone,
+      emergencyContact: emergencyContact.checked
     }
+    contacts.push(contact)
+  }
 
-  console.log(contacts)
   saveContacts()
   form.reset()
 }
@@ -46,9 +50,9 @@ function saveContacts() {
  */
 function loadContacts() {
   let contactData = JSON.parse(window.localStorage.getItem("contacts"))
-    if (contactData) {
-        contacts = contactData
-    }
+  if (contactData) {
+    contacts = contactData
+  }
 }
 
 /**
@@ -87,7 +91,7 @@ function drawContacts() {
       </div>
       `
     }
-    })
+  })
 
   document.getElementById("contact-list").innerHTML = template
 }
@@ -114,9 +118,10 @@ function toggleAddContactForm() {
   let contactForm = document.getElementById("new-contact-form")
   if (contactForm.classList.contains("hidden")) {
     contactForm.classList.remove("hidden")
-  } else { contactForm.classList.add("hidden") }
+  } else {
+    contactForm.classList.add("hidden")
+  }
 }
-
 
 /**
  * Used to generate a random string id for mocked
@@ -126,7 +131,6 @@ function toggleAddContactForm() {
 function generateId() {
   return Math.floor(Math.random() * 10000000) + "-" + Math.floor(Math.random() * 10000000)
 }
-
 
 loadContacts()
 drawContacts()
