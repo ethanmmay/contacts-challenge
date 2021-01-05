@@ -27,6 +27,7 @@ function addContact(event) {
 
   console.log(contacts)
   saveContacts()
+  drawContacts()
   form.reset()
 }
 
@@ -56,7 +57,39 @@ function loadContacts() {
  * contacts in the contacts array
  */
 function drawContacts() {
- 
+  let template = " "
+
+  contacts.forEach(contact => {
+    if (!contact.emergencyContact) {
+      template += `
+       <div class="card mt-1 mb-1">
+        <h3 class="mt-1 mb-1">${contact.name}</h3>
+        <div class="d-flex space-between">
+          <p>
+            <i class="fa fa-fw fa-phone"></i>
+            <span>${contact.phone}</span>
+          </p>
+          <i class="action fa fa-trash text-danger"></i>
+        </div>
+      </div>
+        `
+    } else {
+      template += `
+      <div class="card mt-1 mb-1 emergency-contact">
+        <h3 class="mt-1 mb-1">${contact.name}</h3>
+        <div class="d-flex space-between">
+          <p>
+            <i class="fa fa-fw fa-phone"></i>
+            <span>${contact.phone}</span>
+          </p>
+          <i class="action fa fa-trash text-danger"></i>
+        </div>
+      </div>
+      `
+    }
+    })
+
+  document.getElementById("contact-list").innerHTML = template
 }
 
 /**
