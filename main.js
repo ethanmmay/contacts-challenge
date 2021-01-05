@@ -27,7 +27,6 @@ function addContact(event) {
 
   console.log(contacts)
   saveContacts()
-  drawContacts()
   form.reset()
 }
 
@@ -37,6 +36,7 @@ function addContact(event) {
  */
 function saveContacts() {
   window.localStorage.setItem("contacts", JSON.stringify(contacts))
+  drawContacts()
 }
 
 /**
@@ -69,7 +69,7 @@ function drawContacts() {
             <i class="fa fa-fw fa-phone"></i>
             <span>${contact.phone}</span>
           </p>
-          <i class="action fa fa-trash text-danger"></i>
+          <i class="action fa fa-trash text-danger"onclick="removeContact('${contact.id}')"></i>
         </div>
       </div>
         `
@@ -82,7 +82,7 @@ function drawContacts() {
             <i class="fa fa-fw fa-phone"></i>
             <span>${contact.phone}</span>
           </p>
-          <i class="action fa fa-trash text-danger"></i>
+          <i class="action fa fa-trash text-danger" onclick="removeContact('${contact.id}')"></i>
         </div>
       </div>
       `
@@ -102,6 +102,9 @@ function drawContacts() {
  * @param {string} contactId 
  */
 function removeContact(contactId) {
+  let deletedContact = contacts.findIndex(contact => contact.id == contactId)
+  deletedContact = contacts.splice(deletedContact, 1)
+  saveContacts()
 }
 
 /**
