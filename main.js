@@ -35,7 +35,7 @@ function addContact(event) {
  * Saves the string to localstorage at the key contacts 
  */
 function saveContacts() {
- 
+  window.localStorage.setItem("contacts", JSON.stringify(contacts))
 }
 
 /**
@@ -44,7 +44,10 @@ function saveContacts() {
  * the contacts array to the retrieved array
  */
 function loadContacts() {
-  
+  let contactData = JSON.parse(window.localStorage.getItem("contacts"))
+    if (contactData) {
+        contacts = contactData
+    }
 }
 
 /**
