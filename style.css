@@ -194,6 +194,7 @@ button:hover {
 .fab:hover {
   box-shadow: 2px 0 10px #158ae9b3;
   background-color: var(--primary-lighten);
+  cursor: pointer;
 }
 
 .emergency-contact {
